@@ -1,3 +1,7 @@
+[![PHPCSFixer](https://github.com/danielburger1337/openid-hash-php/actions/workflows/phpcsfixer.yml/badge.svg)](https://github.com/danielburger1337/openid-hash-php/actions/workflows/phpcsfixer.yml)
+[![PHPStan](https://github.com/danielburger1337/openid-hash-php/actions/workflows/phpstan.yml/badge.svg)](https://github.com/danielburger1337/openid-hash-php/actions/workflows/phpstan.yml)
+[![PHPUnit](https://github.com/danielburger1337/openid-hash-php/actions/workflows/phpunit.yml/badge.svg)](https://github.com/danielburger1337/openid-hash-php/actions/workflows/phpunit.yml)
+
 # openid-hash
 
 Create and/or verify OpenID Connect 1.0 ID Token hashes (`at_hash`, `c_hash`, `s_hash`).
