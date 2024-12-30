@@ -23,7 +23,7 @@ class OpenIdHashTest extends TestCase
 
     #[Test]
     #[DataProvider('createHashDataProvider')]
-    public function createAccessTokenHash_returnsExpected(string $algorithm, string|null $curve, string $expected): void
+    public function createAccessTokenHash_returnsExpected(string $algorithm, ?string $curve, string $expected): void
     {
         $instance = new OpenIdHash($algorithm, $curve);
         $returnValue = $instance->createAccessTokenHash(self::TOKEN);
@@ -33,7 +33,7 @@ class OpenIdHashTest extends TestCase
 
     #[Test]
     #[DataProvider('createHashDataProvider')]
-    public function createCodeHash_returnsExpected(string $algorithm, string|null $curve, string $expected): void
+    public function createCodeHash_returnsExpected(string $algorithm, ?string $curve, string $expected): void
     {
         $instance = new OpenIdHash($algorithm, $curve);
         $returnValue = $instance->createCodeHash(self::TOKEN);
@@ -43,7 +43,7 @@ class OpenIdHashTest extends TestCase
 
     #[Test]
     #[DataProvider('createHashDataProvider')]
-    public function createStateHash_returnsExpected(string $algorithm, string|null $curve, string $expected): void
+    public function createStateHash_returnsExpected(string $algorithm, ?string $curve, string $expected): void
     {
         $instance = new OpenIdHash($algorithm, $curve);
         $returnValue = $instance->createStateHash(self::TOKEN);
@@ -53,7 +53,7 @@ class OpenIdHashTest extends TestCase
 
     #[Test]
     #[DataProvider('verifyHashDataProvider')]
-    public function verifyAccessTokenHash_returnsExpected(string $algorithm, string|null $curve, string $token, string $hash, bool $expected): void
+    public function verifyAccessTokenHash_returnsExpected(string $algorithm, ?string $curve, string $token, string $hash, bool $expected): void
     {
         $instance = new OpenIdHash($algorithm, $curve);
         $returnValue = $instance->verifyAccessTokenHash($token, $hash);
@@ -81,7 +81,7 @@ class OpenIdHashTest extends TestCase
 
     #[Test]
     #[DataProvider('verifyHashDataProvider')]
-    public function verifyCodeHash_returnsExpected(string $algorithm, string|null $curve, string $token, string $hash, bool $expected): void
+    public function verifyCodeHash_returnsExpected(string $algorithm, ?string $curve, string $token, string $hash, bool $expected): void
     {
         $instance = new OpenIdHash($algorithm, $curve);
         $returnValue = $instance->verifyCodeHash($token, $hash);
@@ -109,7 +109,7 @@ class OpenIdHashTest extends TestCase
 
     #[Test]
     #[DataProvider('verifyHashDataProvider')]
-    public function verifyStateHash_returnsExpected(string $algorithm, string|null $curve, string $token, string $hash, bool $expected): void
+    public function verifyStateHash_returnsExpected(string $algorithm, ?string $curve, string $token, string $hash, bool $expected): void
     {
         $instance = new OpenIdHash($algorithm, $curve);
         $returnValue = $instance->verifyStateHash($token, $hash);

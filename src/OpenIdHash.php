@@ -16,7 +16,7 @@ class OpenIdHash
      * @throws \InvalidArgumentException If the given algorithm is not supported.
      * @throws \InvalidArgumentException If the EdDSA curve is missing or not supported.
      */
-    public function __construct(string $algorithm, string|null $curve = null)
+    public function __construct(string $algorithm, ?string $curve = null)
     {
         $this->hashAlgorithm = $this->getHashAlgorithm($algorithm, $curve);
     }
@@ -144,7 +144,7 @@ class OpenIdHash
                 return match (\strtolower($curve ?? '')) {
                     'ed25519' => 'sha512',
                     'ed448' => 'shake256-114', // @see https://bitbucket.org/openid/connect/issues/1125
-                    default => throw new \InvalidArgumentException(\sprintf('The "EdDSA" algorithm is not supported with the "%s" "crv".', $curve))
+                    default => throw new \InvalidArgumentException(\sprintf('The "EdDSA" algorithm is not supported with the "%s" "crv".', $curve)),
                 };
 
             default:
