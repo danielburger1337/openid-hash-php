@@ -23,7 +23,7 @@ class OpenIdHashTest extends TestCase
 
     #[Test]
     #[DataProvider('createHashDataProvider')]
-    public function createAccessTokenHash_returnsExpected(string $algorithm, ?string $curve, string $expected): void
+    public function createAccessTokenHashReturnsExpected(string $algorithm, ?string $curve, string $expected): void
     {
         $instance = new OpenIdHash($algorithm, $curve);
         $returnValue = $instance->createAccessTokenHash(self::TOKEN);
@@ -33,7 +33,7 @@ class OpenIdHashTest extends TestCase
 
     #[Test]
     #[DataProvider('createHashDataProvider')]
-    public function createCodeHash_returnsExpected(string $algorithm, ?string $curve, string $expected): void
+    public function createCodeHashReturnsExpected(string $algorithm, ?string $curve, string $expected): void
     {
         $instance = new OpenIdHash($algorithm, $curve);
         $returnValue = $instance->createCodeHash(self::TOKEN);
@@ -43,7 +43,7 @@ class OpenIdHashTest extends TestCase
 
     #[Test]
     #[DataProvider('createHashDataProvider')]
-    public function createStateHash_returnsExpected(string $algorithm, ?string $curve, string $expected): void
+    public function createStateHashReturnsExpected(string $algorithm, ?string $curve, string $expected): void
     {
         $instance = new OpenIdHash($algorithm, $curve);
         $returnValue = $instance->createStateHash(self::TOKEN);
@@ -53,7 +53,7 @@ class OpenIdHashTest extends TestCase
 
     #[Test]
     #[DataProvider('verifyHashDataProvider')]
-    public function verifyAccessTokenHash_returnsExpected(string $algorithm, ?string $curve, string $token, string $hash, bool $expected): void
+    public function verifyAccessTokenHashReturnsExpected(string $algorithm, ?string $curve, string $token, string $hash, bool $expected): void
     {
         $instance = new OpenIdHash($algorithm, $curve);
         $returnValue = $instance->verifyAccessTokenHash($token, $hash);
@@ -62,7 +62,7 @@ class OpenIdHashTest extends TestCase
     }
 
     #[Test]
-    public function verifyAccessTokenHash_emptyToken_returnsFalse(): void
+    public function verifyAccessTokenHashEmptyTokenReturnsFalse(): void
     {
         $instance = new OpenIdHash('HS256');
         $returnValue = $instance->verifyAccessTokenHash('', 'hash');
@@ -71,7 +71,7 @@ class OpenIdHashTest extends TestCase
     }
 
     #[Test]
-    public function verifyAccessTokenHash_emptyHash_returnsFalse(): void
+    public function verifyAccessTokenHashEmptyHashReturnsFalse(): void
     {
         $instance = new OpenIdHash('HS256');
         $returnValue = $instance->verifyAccessTokenHash(self::TOKEN, '');
@@ -81,7 +81,7 @@ class OpenIdHashTest extends TestCase
 
     #[Test]
     #[DataProvider('verifyHashDataProvider')]
-    public function verifyCodeHash_returnsExpected(string $algorithm, ?string $curve, string $token, string $hash, bool $expected): void
+    public function verifyCodeHashReturnsExpected(string $algorithm, ?string $curve, string $token, string $hash, bool $expected): void
     {
         $instance = new OpenIdHash($algorithm, $curve);
         $returnValue = $instance->verifyCodeHash($token, $hash);
@@ -90,7 +90,7 @@ class OpenIdHashTest extends TestCase
     }
 
     #[Test]
-    public function verifyCodeHash_emptyToken_returnsFalse(): void
+    public function verifyCodeHashEmptyTokenReturnsFalse(): void
     {
         $instance = new OpenIdHash('HS256');
         $returnValue = $instance->verifyCodeHash('', 'hash');
@@ -99,7 +99,7 @@ class OpenIdHashTest extends TestCase
     }
 
     #[Test]
-    public function verifyCodeHash_emptyHash_returnsFalse(): void
+    public function verifyCodeHashEmptyHashReturnsFalse(): void
     {
         $instance = new OpenIdHash('HS256');
         $returnValue = $instance->verifyCodeHash(self::TOKEN, '');
@@ -109,7 +109,7 @@ class OpenIdHashTest extends TestCase
 
     #[Test]
     #[DataProvider('verifyHashDataProvider')]
-    public function verifyStateHash_returnsExpected(string $algorithm, ?string $curve, string $token, string $hash, bool $expected): void
+    public function verifyStateHashReturnsExpected(string $algorithm, ?string $curve, string $token, string $hash, bool $expected): void
     {
         $instance = new OpenIdHash($algorithm, $curve);
         $returnValue = $instance->verifyStateHash($token, $hash);
@@ -118,7 +118,7 @@ class OpenIdHashTest extends TestCase
     }
 
     #[Test]
-    public function verifyStateHash_emptyToken_returnsFalse(): void
+    public function verifyStateHashEmptyTokenReturnsFalse(): void
     {
         $instance = new OpenIdHash('HS256');
         $returnValue = $instance->verifyStateHash('', 'hash');
@@ -127,7 +127,7 @@ class OpenIdHashTest extends TestCase
     }
 
     #[Test]
-    public function verifyStateHash_emptyHash_returnsFalse(): void
+    public function verifyStateHashEmptyHashReturnsFalse(): void
     {
         $instance = new OpenIdHash('HS256');
         $returnValue = $instance->verifyStateHash(self::TOKEN, '');
@@ -136,7 +136,7 @@ class OpenIdHashTest extends TestCase
     }
 
     #[Test]
-    public function unsupportedHashAlgorithm_throwsException(): void
+    public function unsupportedHashAlgorithmThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('The "HS1024" signature algorithm is not supported by this library.');
@@ -145,7 +145,7 @@ class OpenIdHashTest extends TestCase
     }
 
     #[Test]
-    public function eddsa_missingCurve_throwsException(): void
+    public function eddsaMissingCurveThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('The "EdDSA" algorithm is not supported with the "" "crv"');
@@ -154,7 +154,7 @@ class OpenIdHashTest extends TestCase
     }
 
     #[Test]
-    public function eddsa_invalidCurve_throwsException(): void
+    public function eddsaInvalidCurveThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('The "EdDSA" algorithm is not supported with the "abc" "crv"');
@@ -163,7 +163,7 @@ class OpenIdHashTest extends TestCase
     }
 
     #[Test]
-    public function hashAlgorithm_curve_areCaseInsensitive(): void
+    public function hashAlgorithmCurveAreCaseInsensitive(): void
     {
         $instance = new OpenIdHash('EDdSa', 'eD448');
         $returnValue = $instance->createAccessTokenHash(self::TOKEN);
